@@ -51,7 +51,7 @@
 USER_NAME="bsc082280"
 ENV_ACTIVATION_SCRIPT="/home/bsc/${USER_NAME}/git_repositories/BSC-Megatron-Bridge/bsc_tools/environments/activate_megatron_bridge.sh"
 BRIDGE_ROOT="/gpfs/home/bsc/${USER_NAME}/git_repositories/BSC-Megatron-Bridge"
-TRAINING_RECIPIE_PATH="${BRIDGE_ROOT}/experiments/fede/training_recipies/02_pretrain_with_yaml_qwen3_8b_4gpus.py"
+TRAINING_RECIPE_PATH="${BRIDGE_ROOT}/experiments/fede/training_recipies/02_pretrain_with_yaml_qwen3_8b_4gpus.py"
 CONFIG_FILE_PATH="${BRIDGE_ROOT}/experiments/fede/experiments_configs/qwen3_8b_pretrain_4gpus.yaml"
 JOB_NAME="qwen3_8b_4gpus"
 OUTPUT_LOG_PATH="/home/bsc/${USER_NAME}/outputs/logs/$(date +%Y-%m-%d_%H-%M-%S)_${JOB_NAME}.txt"
@@ -81,7 +81,7 @@ export MASTER_PORT=20074
 export SRUN_CPUS_PER_TASK=${SLURM_CPUS_PER_TASK}
 export NPROC_PER_NODE
 export NNODES
-export TRAINING_RECIPIE_PATH
+export TRAINING_RECIPE_PATH
 export CONFIG_FILE_PATH
 
 source "${ENV_ACTIVATION_SCRIPT}"
@@ -118,7 +118,7 @@ srun \
             --master-addr $MASTER_ADDR \
             --master-port $MASTER_PORT \
             --max-restarts 0 \
-            $TRAINING_RECIPIE_PATH \
+            $TRAINING_RECIPE_PATH \
             --config-file $CONFIG_FILE_PATH
     ' 2>&1 | tee ${OUTPUT_LOG_PATH}
 
