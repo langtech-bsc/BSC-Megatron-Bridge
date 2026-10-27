@@ -20,25 +20,27 @@ set -uo pipefail
 # Tested on: 
 # NVIDIA H100 
 # 
-# IMPORTANT: 
-# This script assumes that the BSC-Megatron-Bridge repository is cloned at 
-# /gpfs/home/bsc/<USER>/git_repositories/BSC-Megatron-Bridge 
 ############################################################################### 
 
 ###############################################################################
 # 1. Configuration
 ###############################################################################
 
-USER_NAME="bsc082280"
+# We load COPLA project environment variables
+source /gpfs/projects/bsc88/copla/copla.env
 
 # We name the environment using the current COPLA convention
 DATE_FOR_ENV_NAME=$(date +%Y%m%d)
 ENV_NAME="pre-training_megatron-bridge_mn5_python3.12.3_${DATE_FOR_ENV_NAME}"
-ENV_ROOT="/gpfs/projects/bsc88/copla/environments/${ENV_NAME}"
+ENV_ROOT="${COPLA_PROJECTS}/environments/${ENV_NAME}"
 
-BRIDGE_ROOT="/gpfs/home/bsc/${USER_NAME}/git_repositories/BSC-Megatron-Bridge"
-NVRX_ROOT="/gpfs/home/bsc/${USER_NAME}/git_repositories/nvidia-resiliency-ext-0.6.0"
-APEX_ROOT="/home/bsc/${USER_NAME}/git_repositories/apex"
+# HACK
+# This path should be ${COPLA_PROJECTS}/BSC-Megatron-Bridge if BSC-Megatron-Bridge repo was not already created.
+# We used a different path in this version because the BSC-Megatron-Bridge was already created and modified (so it was ahead Megatron-Bridge repo).
+BRIDGE_ROOT="${COPLA_CODEBASE}/Megatron-Bridge"
+
+NVRX_ROOT="${COPLA_CODEBASE}/nvidia-resiliency-ext-0.6.0"
+APEX_ROOT="${COPLA_CODEBASE}/apex"
 
 CUDA_ROOT="/apps/ACC/CUDA/13.2"
 export MODULEPATH=$MODULEPATH:/apps/GPP/EASYBUILD/modules/all
