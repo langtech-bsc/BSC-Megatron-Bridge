@@ -21,16 +21,19 @@
 # 1. Configuration
 ###############################################################################
 
+# We load COPLA project environment variables
+source /gpfs/projects/bsc88/copla/copla.env
+
 # You SHOULD check these variables and change them if necessary
 USER_NAME="$(whoami)"
-ENV_NAME="pre-training_megatron-bridge_mn5_python3.12.3_20261026"
+ENV_NAME="pre-training_megatron-bridge_mn5_python3.12.3_20261027"
 
-ENV_ROOT="/gpfs/projects/bsc88/copla/environments/${ENV_NAME}"
+ENV_ROOT="${COPLA_PROJECTS}/environments/${ENV_NAME}"
 HF_CACHE="/gpfs/scratch/bsc88/${USER_NAME}/cache/hf_cache"
 
 export BRIDGE_ROOT="/gpfs/home/bsc/${USER_NAME}/git_repositories/BSC-Megatron-Bridge"
-export NVRX_ROOT="/gpfs/projects/bsc88/copla/git_repositories/nvidia-resiliency-ext-0.6.0"
-export APEX_ROOT="/gpfs/projects/bsc88/copla/git_repositories/apex"
+export NVRX_ROOT="${COPLA_CODEBASE}/nvidia-resiliency-ext-0.6.0"
+export APEX_ROOT="${COPLA_CODEBASE}/apex"
 
 CUDA_ROOT="/apps/ACC/CUDA/13.2"
 export MODULEPATH=$MODULEPATH:/apps/GPP/EASYBUILD/modules/all
